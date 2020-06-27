@@ -1,1 +1,1 @@
-# Submission 1 Belajar Fundamental Aplikasi Android
+# Submission 2 Belajar Fundamental Aplikasi Android
