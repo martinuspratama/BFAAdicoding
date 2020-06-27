@@ -14,10 +14,8 @@ import com.bumptech.glide.request.RequestOptions
 @BindingAdapter("avatar")
 fun avatar(imageView: ImageView, avatar: Int) =
     imageView.apply {
-        apply {
-            Glide.with(this)
-                .load(avatar)
-                .apply(RequestOptions.circleCropTransform())
-                .into(this)
-        }
+        Glide.with(this)
+            .load(avatar)
+            .apply(RequestOptions.circleCropTransform())
+            .into(this)
     }

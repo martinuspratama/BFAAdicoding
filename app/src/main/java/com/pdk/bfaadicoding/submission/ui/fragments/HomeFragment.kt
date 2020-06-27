@@ -1,13 +1,12 @@
 package com.pdk.bfaadicoding.submission.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdk.bfaadicoding.submission.R
 import com.pdk.bfaadicoding.submission.data.models.User
@@ -19,20 +18,23 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Project: BFAAdicoding
  * Email: budiardianata@windowslive.com
  */
-class HomeFragment : Fragment()  {
+class HomeFragment : Fragment() {
 
     private var users: MutableList<User> = mutableListOf()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         loadData()
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycler_home.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recycler_home.adapter = UsersAdapter(users){ user, iv->
+        recycler_home.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycler_home.adapter = UsersAdapter(users) { user, iv ->
             findNavController().navigate(
                 HomeFragmentDirections.detailsAction(user, user.username),
                 FragmentNavigatorExtras(
@@ -42,7 +44,7 @@ class HomeFragment : Fragment()  {
         }
     }
 
-    private fun loadData(){
+    private fun loadData() {
         users.clear()
         val names = resources.getStringArray(R.array.name)
         val usernames = resources.getStringArray(R.array.username)
@@ -55,9 +57,11 @@ class HomeFragment : Fragment()  {
 
         for (i in names.indices) {
             users.add(
-                User(usernames[i], names[i], avatars.getResourceId(i, 0),
+                User(
+                    usernames[i], names[i], avatars.getResourceId(i, 0),
                     companies[i], locations[i], repositories[i], followers[i],
-                    followings[i])
+                    followings[i]
+                )
             )
         }
         avatars.recycle()

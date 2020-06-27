@@ -1,11 +1,11 @@
 package com.pdk.bfaadicoding.submission.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.color.MaterialColors
@@ -29,6 +29,7 @@ class DetailsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val user = args.USERDATA
@@ -41,7 +42,10 @@ class DetailsFragment : Fragment() {
         val transformation: MaterialContainerTransform = MaterialContainerTransform().apply {
             drawingViewId = R.id.nav_host
             interpolator = FastOutSlowInInterpolator()
-            containerColor = MaterialColors.getColor(requireActivity().findViewById(android.R.id.content), R.attr.colorSurface)
+            containerColor = MaterialColors.getColor(
+                requireActivity().findViewById(android.R.id.content),
+                R.attr.colorSurface
+            )
             fadeMode = MaterialContainerTransform.FADE_MODE_OUT
             duration = 300
         }
