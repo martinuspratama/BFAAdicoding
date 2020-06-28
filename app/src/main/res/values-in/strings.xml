@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User</string>
+    <string name="search_hint">Masukan nama pengguna github..</string>
+    <string name="not_found">Data Tidak Ditemukan</string>
+    <string name="not_have">%1$s Tidak Ada %2$s</string>
+    <string name="settings">Pengaturan</string>
+</resources>

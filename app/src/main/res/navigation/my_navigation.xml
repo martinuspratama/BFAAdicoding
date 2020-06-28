@@ -18,15 +18,12 @@
     <fragment
         android:id="@+id/details_destination"
         android:name="com.pdk.bfaadicoding.submission.ui.fragments.DetailsFragment"
-        android:label="{Title}"
+        android:label="{Username}"
         tools:layout="@layout/fragment_details" >
 
         <argument
-            android:name="USER_DATA"
-            app:argType="com.pdk.bfaadicoding.submission.data.models.User" />
-        <argument
-            android:name="Title"
+            android:name="Username"
             app:argType="string"
-            android:defaultValue="Detail User" />
+            app:nullable="false" />
     </fragment>
 </navigation>

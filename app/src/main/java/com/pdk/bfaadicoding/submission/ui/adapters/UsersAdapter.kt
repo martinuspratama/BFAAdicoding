@@ -1,4 +1,4 @@
-package com.pdk.bfaadicoding.submission.ui.adapter
+package com.pdk.bfaadicoding.submission.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,17 @@ import com.pdk.bfaadicoding.submission.databinding.ItemUserListBinding
  * Project: BFAAdicoding
  * Email: budiardianata@windowslive.com
  */
-class UsersAdapter(private val users:List<User>, private val clickListener: (User , View) -> Unit) : RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
+class UsersAdapter(private val users: ArrayList<User>, private val clickListener: (String , View) -> Unit) : RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
+
+
+    fun setData(items: List<User>){
+        users.apply {
+            clear()
+            addAll(items)
+        }
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         return UsersViewHolder(
             ItemUserListBinding.inflate(
@@ -28,10 +38,10 @@ class UsersAdapter(private val users:List<User>, private val clickListener: (Use
     override fun getItemCount(): Int = users.size
 
     inner class UsersViewHolder(private val binding: ItemUserListBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind( user: User, click: (User, View) -> Unit) {
+        fun bind( user: User, click: (String, View) -> Unit) {
             binding.data = user
-            binding.root.transitionName = user.username
-            binding.root.setOnClickListener { click(user, binding.root) }
+            binding.root.transitionName = user.login
+            binding.root.setOnClickListener { click(user.login, binding.root) }
         }
     }
 }

@@ -2,22 +2,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="data"
             type="com.pdk.bfaadicoding.submission.data.models.User" />
     </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_medium"
         app:cardCornerRadius="@dimen/spacing_small"
-        app:cardElevation="@dimen/spacing_small"
-        android:layout_height="wrap_content">
+        app:cardElevation="@dimen/spacing_small">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="@dimen/spacing_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_small"
             tools:ignore="UnusedAttribute">
+
             <ImageView
                 android:id="@+id/avatar"
                 android:layout_width="70sp"
@@ -26,60 +31,41 @@
                 android:padding="@dimen/spacing_medium"
                 android:scaleType="centerCrop"
                 android:transitionName="imageView_trans"
-                app:avatar="@{data.avatar}"
+                app:avatar="@{data.avatar_url}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
+
             <TextView
                 android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{data.name}"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:textSize="18sp"
                 android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:text="@{data.login}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/avatar"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@tools:sample/full_names" />
-            <LinearLayout
-                android:layout_marginStart="@dimen/spacing_medium"
-                android:layout_marginEnd="@dimen/spacing_medium"
-                android:layout_marginTop="@dimen/spacing_medium"
-                app:layout_constraintTop_toBottomOf="@id/name"
-                app:layout_constraintStart_toEndOf="@+id/avatar"
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="15sp"
-                    android:layout_height="15sp"
-                    android:src="@drawable/ic_folder"
-                    android:contentDescription="@string/app_name" />
-                <TextView
-                    android:layout_marginStart="3dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:text="@{data.repository}"/>
-                <ImageView
-                    android:layout_marginStart="5dp"
-                    android:layout_width="15sp"
-                    android:layout_height="15sp"
-                    android:src="@drawable/ic_location"
-                    android:contentDescription="@string/app_name" />
-                <TextView
-                    android:layout_marginStart="3dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{data.location}"/>
-            </LinearLayout>
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="@dimen/spacing_medium"
+                android:text="@{data.type}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/avatar"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="@tools:sample/cities" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

@@ -4,6 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.pdk.bfaadicoding.submission.R
 
 
 /**
@@ -12,10 +13,8 @@ import com.bumptech.glide.request.RequestOptions
  * Email: budiardianata@windowslive.com
  */
 @BindingAdapter("avatar")
-fun avatar(imageView: ImageView, avatar: Int) =
-    imageView.apply {
-        Glide.with(this)
-            .load(avatar)
-            .apply(RequestOptions.circleCropTransform())
-            .into(this)
-    }
+fun avatar(imageView: ImageView, avatar: String) =
+    Glide.with(imageView)
+        .load(avatar)
+        .apply(RequestOptions.circleCropTransform().placeholder(R.drawable.ic_user))
+        .into(imageView)

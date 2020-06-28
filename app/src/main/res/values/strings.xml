@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Github User</string>
-    <string name="repository">Repository</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
+    <string name="app_name" translatable="false">Github User</string>
+    <string name="search_hint">Input Github Username First..</string>
+    <string name="followers" translatable="false">Followers</string>
+    <string name="following" translatable="false">Following</string>
+    <string name="not_found">Data Not Found</string>
+    <string name="not_have">%1$s Not Have %2$s</string>
+    <string name="settings">Settings</string>
 </resources>

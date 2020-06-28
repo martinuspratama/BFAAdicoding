@@ -10,13 +10,11 @@ import kotlinx.android.parcel.Parcelize
  * Email: budiardianata@windowslive.com
  */
 @Parcelize
-data class User (
-    val username : String,
+data class User(
+    val id: Int,
+    val login: String,
+    val avatar_url: String,
     val name: String?,
-    val avatar: Int?,
-    val company: String?,
     val location: String?,
-    val repository: String?,
-    val follower: String?,
-    val following: String?
+    val type: String?
 ) : Parcelable
