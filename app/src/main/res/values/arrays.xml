@@ -1,0 +1,13 @@
+<resources>
+    <string-array name="themeListArray">
+        <item>Terang</item>
+        <item>Gelap</item>
+        <item>Diatur Sistem</item>
+    </string-array>
+
+    <string-array name="themeEntryArray">
+        <item>light</item>
+        <item>dark</item>
+        <item>default</item>
+    </string-array>
+</resources>

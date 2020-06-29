@@ -4,92 +4,72 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdk.bfaadicoding.submission.R
-import com.pdk.bfaadicoding.submission.databinding.FragmentHomeBinding
+import com.pdk.bfaadicoding.submission.databinding.FragmentFavoriteBinding
 import com.pdk.bfaadicoding.submission.ui.adapters.UsersAdapter
-import com.pdk.bfaadicoding.submission.ui.viewmodels.HomeViewModel
+import com.pdk.bfaadicoding.submission.ui.viewmodels.FavoriteViewModel
 import com.pdk.bfaadicoding.submission.utils.Status
 
-/**
- * Created by Budi Ardianata on 26/06/2020.
- * Project: BFAAdicoding
- * Email: budiardianata@windowslive.com
- */
-class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+class FavoriteFragment : Fragment() {
+    private lateinit var binding: FragmentFavoriteBinding
 
-    private lateinit var homeAdapter: UsersAdapter
-    private val homeViewModel: HomeViewModel by navGraphViewModels(R.id.my_navigation)
-//    private lateinit var homeViewModel: HomeViewModel by navGraphViewModels(R.id.my_navigation)
+    private lateinit var favAdapter: UsersAdapter
+
+    private val favoriteViewModel: FavoriteViewModel by navGraphViewModels(R.id.my_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
+        binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        homeViewModel = ViewModelProvider(
-//            this,
-//            ViewModelProvider.NewInstanceFactory()
-//        ).get(HomeViewModel::class.java)
-        binding.errLayout.emptyText.text = resources.getString(R.string.search_hint)
 
-        homeAdapter = UsersAdapter(arrayListOf()) { username, iv ->
+        favAdapter = UsersAdapter(arrayListOf()) { username, iv ->
+
             findNavController().navigate(
-                HomeFragmentDirections.detailsAction(username),
+                FavoriteFragmentDirections.favoriteDetailsAction(username),
                 FragmentNavigatorExtras(
                     iv to username
                 )
             )
         }
 
-        binding.recyclerHome.apply {
+        binding.recyclerFav.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = homeAdapter
+            adapter = favAdapter
         }
-
-        binding.searchView.apply {
-            queryHint = resources.getString(R.string.search_hint)
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    homeViewModel.setUserId(query)
-                    binding.searchView.clearFocus()
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    return false
-                }
-            })
-        }
-
         observeData()
     }
 
     private fun observeData() {
-        homeViewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            it?.let { resource ->
-                when (resource.status) {
+        favoriteViewModel.dataFavorite.observe(viewLifecycleOwner, Observer {
+            it?.let { r ->
+                when (r.status) {
                     Status.SUCCESS -> {
-                        resource.data?.let { users ->
+                        r.data?.let { users ->
                             if (!users.isNullOrEmpty()) {
                                 showSuccess()
-                                homeAdapter.setData(users)
+                                favAdapter.setData(users)
                             } else {
-                                showError(null)
+                                showError(
+                                    resources.getString(
+                                        R.string.not_have,
+                                        "",
+                                        resources.getString(R.string.favorite)
+                                    )
+                                )
                             }
                         }
                     }
@@ -110,19 +90,18 @@ class HomeFragment : Fragment() {
         binding.errLayout.main.visibility = View.VISIBLE
         binding.errLayout.emptyText.text = message ?: resources.getString(R.string.not_found)
         binding.progress.visibility = View.GONE
-        binding.recyclerHome.visibility = View.GONE
+        binding.recyclerFav.visibility = View.GONE
     }
 
     private fun showSuccess() {
         binding.errLayout.main.visibility = View.GONE
         binding.progress.visibility = View.GONE
-        binding.recyclerHome.visibility = View.VISIBLE
+        binding.recyclerFav.visibility = View.VISIBLE
     }
 
     private fun showLoading() {
         binding.errLayout.main.visibility = View.GONE
         binding.progress.visibility = View.VISIBLE
-        binding.recyclerHome.visibility = View.GONE
+        binding.recyclerFav.visibility = View.GONE
     }
-
 }

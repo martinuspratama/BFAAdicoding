@@ -14,6 +14,12 @@
             android:id="@+id/details_action"
             app:destination="@id/details_destination"
             />
+        <action
+            android:id="@+id/favorite_action"
+            app:destination="@id/favorite_destination" />
+        <action
+            android:id="@+id/settings_action"
+            app:destination="@id/settings_destination" />
     </fragment>
     <fragment
         android:id="@+id/details_destination"
@@ -26,4 +32,17 @@
             app:argType="string"
             app:nullable="false" />
     </fragment>
+    <fragment
+        android:id="@+id/favorite_destination"
+        android:name="com.pdk.bfaadicoding.submission.ui.fragments.FavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/favorite_details_action"
+            app:destination="@id/details_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/settings_destination"
+        android:name="com.pdk.bfaadicoding.submission.ui.fragments.SettingsFragment"
+        android:label="@string/settings" />
 </navigation>

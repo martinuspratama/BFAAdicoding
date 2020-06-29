@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.pdk.bfaadicoding.submission.R
@@ -29,7 +31,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         navController = findNavController(R.id.nav_host)
+        NavigationUI.setupWithNavController(
+            binding.bottomNavigationView,
+            navController
+        )
         appBarConfiguration = AppBarConfiguration(navController.graph)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.details_destination -> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+                R.id.settings_destination -> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+                else -> {
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                }
+            }
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
@@ -44,8 +63,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_settings -> {
-                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(intent)
+                navController.navigate(R.id.settings_destination)
+//                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+//                startActivity(intent)
                 return true
             }
         }

@@ -37,10 +37,7 @@
                 android:layout_height="100dp"
                 android:contentDescription="@string/app_name"
                 android:transitionName="imageView_trans"
-                app:avatar='@{data.avatar_url ?? "" }'
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:avatar='@{data.avatar_url ?? "" }' />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,10 +46,6 @@
                 android:text="@{data.name??data.login}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
@@ -65,10 +58,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
                 android:textColor="@android:color/white"
                 android:visibility="@{data.location!=null? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"
                 tools:text="@tools:sample/cities" />
 
             <TextView
@@ -82,10 +71,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
                 android:textColor="@android:color/white"
                 android:visibility="@{data.type!=null? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"
                 tools:text="@tools:sample/cities" />
 
         </LinearLayout>
@@ -107,5 +92,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fav"
+            app:fabSize="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_favorite_border"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

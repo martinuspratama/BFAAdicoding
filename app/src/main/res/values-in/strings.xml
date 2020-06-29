@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Github User</string>
     <string name="search_hint">Masukan nama pengguna github..</string>
     <string name="not_found">Data Tidak Ditemukan</string>
     <string name="not_have">%1$s Tidak Ada %2$s</string>
     <string name="settings">Pengaturan</string>
+    <string name="favorite">Favorit</string>
+    <string name="home">Beranda</string>
+    <string name="theme">Tema Aplikasi</string>
+    <string name="reminder">Pengingat Harian</string>
+    <string name="reminder_off">Pengingat harian mati</string>
+    <string name="reminder_on">"Pengingat harian hidup pada jam 09.00 AM "</string>
 </resources>

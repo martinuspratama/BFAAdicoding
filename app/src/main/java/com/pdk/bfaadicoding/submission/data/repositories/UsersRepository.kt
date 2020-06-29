@@ -1,6 +1,7 @@
 package com.pdk.bfaadicoding.submission.data.repositories
 
 import androidx.lifecycle.liveData
+import com.pdk.bfaadicoding.submission.data.local.UserDao
 import com.pdk.bfaadicoding.submission.data.network.RetrofitBuilder
 import com.pdk.bfaadicoding.submission.utils.Resource
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +46,14 @@ object UsersRepository {
         emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = RetrofitBuilder.apiGithub.userFollowing(username)))
+        } catch (exception: Exception) {
+            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+        }
+    }
+    fun getFavorite(userDao: UserDao) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = userDao.getUserList()))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }

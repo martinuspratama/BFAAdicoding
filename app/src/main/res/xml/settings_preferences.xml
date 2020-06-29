@@ -1,0 +1,23 @@
+<androidx.preference.PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/settings">
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_notifications"
+            app:key="reminder"
+            app:summaryOff="@string/reminder_off"
+            app:summaryOn="@string/reminder_on"
+            app:title="@string/reminder" />
+        <ListPreference
+            android:icon="@drawable/ic_theme"
+            app:key="themePref"
+            app:title="@string/theme"
+            app:defaultValue="default"
+            app:dialogTitle="Pilih Tema"
+            app:entries="@array/themeListArray"
+            app:entryValues="@array/themeEntryArray"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
