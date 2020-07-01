@@ -1,13 +1,10 @@
 package com.pdk.bfaadicoding.submission.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -29,7 +26,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeAdapter: UsersAdapter
     private val homeViewModel: HomeViewModel by navGraphViewModels(R.id.my_navigation)
-//    private lateinit var homeViewModel: HomeViewModel by navGraphViewModels(R.id.my_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +37,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        homeViewModel = ViewModelProvider(
-//            this,
-//            ViewModelProvider.NewInstanceFactory()
-//        ).get(HomeViewModel::class.java)
+        setHasOptionsMenu(true)
         binding.errLayout.emptyText.text = resources.getString(R.string.search_hint)
 
         homeAdapter = UsersAdapter(arrayListOf()) { username, iv ->
@@ -55,7 +48,6 @@ class HomeFragment : Fragment() {
                 )
             )
         }
-
         binding.recyclerHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = homeAdapter
@@ -125,4 +117,19 @@ class HomeFragment : Fragment() {
         binding.recyclerHome.visibility = View.GONE
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_settings -> {
+                findNavController().navigate(HomeFragmentDirections.settingsAction())
+                return true
+            }
+        }
+        return false
+    }
 }

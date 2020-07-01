@@ -14,7 +14,6 @@ import com.pdk.bfaadicoding.submission.R
 import com.pdk.bfaadicoding.submission.databinding.FragmentFavoriteBinding
 import com.pdk.bfaadicoding.submission.ui.adapters.UsersAdapter
 import com.pdk.bfaadicoding.submission.ui.viewmodels.FavoriteViewModel
-import com.pdk.bfaadicoding.submission.utils.Status
 
 
 class FavoriteFragment : Fragment() {
@@ -54,33 +53,20 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observeData() {
+        showLoading()
         favoriteViewModel.dataFavorite.observe(viewLifecycleOwner, Observer {
-            it?.let { r ->
-                when (r.status) {
-                    Status.SUCCESS -> {
-                        r.data?.let { users ->
-                            if (!users.isNullOrEmpty()) {
-                                showSuccess()
-                                favAdapter.setData(users)
-                            } else {
-                                showError(
-                                    resources.getString(
-                                        R.string.not_have,
-                                        "",
-                                        resources.getString(R.string.favorite)
-                                    )
-                                )
-                            }
-                        }
-                    }
-
-                    Status.LOADING -> {
-                        showLoading()
-                    }
-
-                    Status.ERROR -> {
-                        showError(it.message)
-                    }
+            it?.let { users ->
+                if (!users.isNullOrEmpty()) {
+                    showSuccess()
+                    favAdapter.setData(users)
+                } else {
+                    showError(
+                        resources.getString(
+                            R.string.not_have,
+                            "",
+                            resources.getString(R.string.favorite)
+                        )
+                    )
                 }
             }
         })

@@ -44,5 +44,13 @@
     <fragment
         android:id="@+id/settings_destination"
         android:name="com.pdk.bfaadicoding.submission.ui.fragments.SettingsFragment"
-        android:label="@string/settings" />
+        android:label="@string/settings" >
+        <action
+            android:id="@+id/settings_to_about"
+            app:destination="@id/about_destination" />
+    </fragment>
+    <dialog
+        android:id="@+id/about_destination"
+        android:name="com.pdk.bfaadicoding.submission.ui.fragments.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>

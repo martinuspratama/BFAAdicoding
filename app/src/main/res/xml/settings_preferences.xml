@@ -3,21 +3,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory app:title="@string/settings">
+        <Preference
+            android:icon="@drawable/ic_language"
+            android:title="@string/language"
+            android:summary="@string/language_summary">
+            <intent
+                android:action="android.settings.LOCALE_SETTINGS" />
+        </Preference>
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_notifications"
-            app:key="reminder"
+            app:key="@string/reminder_key"
             app:summaryOff="@string/reminder_off"
             app:summaryOn="@string/reminder_on"
             app:title="@string/reminder" />
         <ListPreference
             android:icon="@drawable/ic_theme"
-            app:key="themePref"
+            app:key="@string/theme_key"
             app:title="@string/theme"
             app:defaultValue="default"
             app:dialogTitle="Pilih Tema"
             app:entries="@array/themeListArray"
             app:entryValues="@array/themeEntryArray"
             app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Info">
+        <Preference
+            android:key="@string/about"
+            android:icon="@drawable/ic_user"
+            android:title="@string/about">
+            <intent
+                android:action="android.settings.LOCALE_SETTINGS" />
+        </Preference>
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

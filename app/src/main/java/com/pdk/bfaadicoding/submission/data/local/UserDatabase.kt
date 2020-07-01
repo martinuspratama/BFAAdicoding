@@ -13,10 +13,10 @@ import com.pdk.bfaadicoding.submission.data.models.User
  * Email: budiardianata@windowslive.com
  */
 @Database(entities = [User::class], version = 1, exportSchema = false)
-public abstract class UserDatabase: RoomDatabase() {
+abstract class UserDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
-    companion object {
 
+    companion object {
         @Volatile
         private var INSTANCE: UserDatabase? = null
 
@@ -25,11 +25,11 @@ public abstract class UserDatabase: RoomDatabase() {
             if (tempInstance != null) {
                 return tempInstance
             }
-            synchronized(this) {
+            synchronized(UserDatabase::class) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     UserDatabase::class.java,
-                    "database_user"
+                    "database_github"
                 ).build()
                 INSTANCE = instance
                 return instance
